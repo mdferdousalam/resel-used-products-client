@@ -10,9 +10,9 @@ import { FaPhoneAlt } from "react-icons/fa";
 
 const Footer = () => {
     return (
-        <div className='bg-secondary text-white text-xl'>
+        <div className='bg-primary text-white md:text-xl pt-10 mt-32'>
             <div className=' grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-                <div className='p-6'>
+                <div className='p-6 text-center'>
                     <Link>About Us</Link>
                     <p>-----------------------------</p><br />
                     <Link>Why Resel</Link>
@@ -21,7 +21,7 @@ const Footer = () => {
                     <p>-----------------------------</p><br />
                     <Link>FAQs</Link>
                 </div>
-                <div className='p-6'>
+                <div className='p-6 text-center'>
                     <Link>Resel For Business</Link>
                     <p>-----------------------------</p><br />
                     <Link>Charity</Link>
@@ -30,7 +30,7 @@ const Footer = () => {
                     <p>-----------------------------</p><br />
                     <Link>Blog</Link>
                 </div>
-                <div className='p-6'>
+                <div className='p-6 text-center'>
                     <Link>Contact Us</Link>
                     <p>-----------------------------</p><br />
                     <Link>Careers</Link>
@@ -39,18 +39,18 @@ const Footer = () => {
                     <p>-----------------------------</p><br />
                     <Link>Terms & Conditions</Link>
                 </div>
-                <div>
-                    <div className='flex p-6 mt-10'>
-                        <Link> <FaFacebook /></Link>
+                <div className='text-center'>
+                    <div className='flex p-6 mt-10 md:text-3xl text-center'>
+                        <Link> <FaFacebook className='' /></Link>
                         <Link className='ml-6'> <FaTwitter /></Link>
                         <Link className='ml-6'> <FaInstagram /></Link>
                         <Link className='ml-6'> <FaYoutube /></Link>
                     </div>
-                    <div className='flex mt-10'>
-                        <FaMailBulk className='ml-6 mt-2' /> <p className='ml-6'>info@resel.com</p>
+                    <div className='flex mt-10 text-center' >
+                        <FaMailBulk className='ml-6 mt-2 md:text-3xl' /> <p className='ml-6'>info@resel.com</p>
                     </div>
-                    <div className='flex p-6 mt-10'>
-                        <FaPhoneAlt className='mr-6 mt-2' />
+                    <div className='flex p-6 mt-10 text-center'>
+                        <FaPhoneAlt className='mr-6 mt-2 md:text-3xl' />
                         <div>
                             <p>+8801758074758</p>
                             (Mon-Sat 10AM-7PM)
