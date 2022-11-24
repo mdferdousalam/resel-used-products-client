@@ -1,9 +1,65 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { FaFacebook } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
+import { FaYoutube } from "react-icons/fa";
+import { FaMailBulk } from "react-icons/fa";
+import { FaPhoneAlt } from "react-icons/fa";
+
 
 const Footer = () => {
     return (
-        <div>
-            <h2>Footer here</h2>
+        <div className='bg-secondary text-white text-xl'>
+            <div className=' grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
+                <div className='p-6'>
+                    <Link>About Us</Link>
+                    <p>-----------------------------</p><br />
+                    <Link>Why Resel</Link>
+                    <p>-----------------------------</p><br />
+                    <Link>How it Works</Link>
+                    <p>-----------------------------</p><br />
+                    <Link>FAQs</Link>
+                </div>
+                <div className='p-6'>
+                    <Link>Resel For Business</Link>
+                    <p>-----------------------------</p><br />
+                    <Link>Charity</Link>
+                    <p>-----------------------------</p><br />
+                    <Link>User Reviews</Link>
+                    <p>-----------------------------</p><br />
+                    <Link>Blog</Link>
+                </div>
+                <div className='p-6'>
+                    <Link>Contact Us</Link>
+                    <p>-----------------------------</p><br />
+                    <Link>Careers</Link>
+                    <p>-----------------------------</p><br />
+                    <Link>privacy</Link>
+                    <p>-----------------------------</p><br />
+                    <Link>Terms & Conditions</Link>
+                </div>
+                <div>
+                    <div className='flex p-6 mt-10'>
+                        <Link> <FaFacebook /></Link>
+                        <Link className='ml-6'> <FaTwitter /></Link>
+                        <Link className='ml-6'> <FaInstagram /></Link>
+                        <Link className='ml-6'> <FaYoutube /></Link>
+                    </div>
+                    <div className='flex mt-10'>
+                        <FaMailBulk className='ml-6 mt-2' /> <p className='ml-6'>info@resel.com</p>
+                    </div>
+                    <div className='flex p-6 mt-10'>
+                        <FaPhoneAlt className='mr-6 mt-2' />
+                        <div>
+                            <p>+8801758074758</p>
+                            (Mon-Sat 10AM-7PM)
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <p className='text-center my-10 pb-10'>All Rights Reserved © 2022 - Buy Sell Ltd</p>
         </div>
     );
 };
