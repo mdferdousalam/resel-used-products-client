@@ -68,7 +68,7 @@ const Header = () => {
 
                     </div>
                 </div>
-                <div className=" hidden md:flex md:block">
+                <div className=" hidden md:block">
                     {
                         user?.uid ?
                             <>
