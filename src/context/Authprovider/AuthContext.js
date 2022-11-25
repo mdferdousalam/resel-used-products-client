@@ -6,10 +6,12 @@ export const AuthContext = createContext();
 
 const auth = getAuth(app)
 
+
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
     const [userEmail, setuserEmail] = useState('')
+    const [userType, setUserType] = useState('')
 
     const providerLogin = (provider) => {
         setLoading(true)
@@ -18,6 +20,7 @@ const AuthProvider = ({ children }) => {
 
     const logOut = () => {
         setLoading(true)
+        localStorage.removeItem('accessToken12')
         return signOut(auth);
     }
 
@@ -47,11 +50,14 @@ const AuthProvider = ({ children }) => {
     }
 
 
+
     const authInfo = {
         user,
+        setUser,
         userEmail,
         setuserEmail,
-        setUser,
+        userType,
+        setUserType,
         loading,
         setLoading,
         providerLogin,
@@ -60,6 +66,7 @@ const AuthProvider = ({ children }) => {
         signIn,
         updateUserProfile,
         auth
+
     }
 
     return (

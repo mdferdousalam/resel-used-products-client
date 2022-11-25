@@ -1,10 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import UseTitle from '../../hooks/UseTitle';
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle } from "react-icons/fa";
 import { GoogleAuthProvider, sendPasswordResetEmail } from 'firebase/auth';
 import { AuthContext } from '../../context/Authprovider/AuthContext';
+
+import useToken from '../../hooks/useToken';
 
 const Login = () => {
     UseTitle('Login')
@@ -16,17 +18,26 @@ const Login = () => {
     const googleProvider = new GoogleAuthProvider();
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { providerLogin, userEmail, setuserEmail, setUser, signIn, auth } = useContext(AuthContext)
+    const { providerLogin, userEmail, setUserType, signIn, auth } = useContext(AuthContext)
 
+    const [loginUserEmail, setLoginUserEmail] = useState('');
+    const [token] = useToken(loginUserEmail);
+    // console.log(loginUserEmail);
+
+    if (token) {
+        navigate(from, { replace: true });
+    }
 
     const handleGoogleLogin = () => {
         providerLogin(googleProvider)
             .then(result => {
-                const user = result.user;
-                setUser(user)
+                // const user = result.user;
+                setLoginUserEmail(result.user.email)
+                // console.log(user);
+                // console.log(user);
+                // setUser(user)
+                setUserType('buyer')
                 navigate(from, { replace: true })
-
-
             })
             .catch((error) => {
                 console.error('error:', error);
@@ -34,12 +45,30 @@ const Login = () => {
     }
 
 
+
+
+    const onSubmit = data => {
+        // console.log(data)
+        setLoginUserEmail(data.email)
+        // console.log(loginUserEmail)
+
+        signIn(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user.email);
+                // setLoginUserEmail(user.email)
+                navigate(from, { replace: true })
+
+
+            })
+            .catch(error => console.log(error))
+    }
+
     const handleForgetPassword = () => {
         if (!userEmail) {
             alert('Please enter your email')
             return
         }
-
         sendPasswordResetEmail(auth, userEmail)
             .then(() => {
                 alert('password reset email sent')
@@ -50,18 +79,6 @@ const Login = () => {
     }
 
 
-    const onSubmit = data => {
-        console.log(data)
-
-        signIn(data.email, data.password)
-            .then(result => {
-                const user = result.user;
-                console.log(user);
-                navigate(from, { replace: true })
-
-            })
-            .catch(error => console.log(error))
-    }
 
     return (
         <div>
@@ -70,6 +87,7 @@ const Login = () => {
                 <input
                     placeholder='Email'
                     type='email'
+
                     className='border-2 mb-6 p-4 rounded border-primary'
                     {...register("email", { required: true })}
                 />
@@ -84,11 +102,7 @@ const Login = () => {
                 />
                 {errors.password && <span>Password is required</span>}
 
-                <select className='border-2 p-4 rounded border-primary' {...register("accountType")}>
-                    <option value="buyer">Buyer</option>
-                    <option value="seller">Seller</option>
-                    <option value="admin">Admin</option>
-                </select>
+
 
                 <input
                     className='mt-10 font-medium border-2 border-primary  w-1/2 rounded mx-auto bg-neutral p-2 hover:bg-primary hover:text-white'
@@ -98,12 +112,12 @@ const Login = () => {
 
 
                 <Link onClick={handleForgetPassword}  >
-                    <p className='text-center '>
+                    <p className='text-center mt-4'>
                         <small className='text-primary font-bold  hover:bg-neutral hover:text-primary hover:p-1'>Forgot your password?</small>
                     </p>
                 </Link>
                 <p className='text-center'><small>Not registered yet?
-                    <Link className=' text-primary font-bold  hover:bg-neutral hover:text-primary hover:p-1' to='/register'>Create an account
+                    <Link className=' text-primary font-bold  hover:bg-neutral hover:text-primary hover:p-1' to='/signup'>Create an account
                     </Link></small>
                 </p>
 
