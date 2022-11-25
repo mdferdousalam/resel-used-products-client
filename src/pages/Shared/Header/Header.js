@@ -19,7 +19,7 @@ const Header = () => {
 
 
     return (
-        <div className=" bg-primary flex justify-between p-10 text-white pt-10 sticky z-50">
+        <div className="bg-primary sticky top-0 flex justify-between p-10 text-white pt-10 sticky z-50">
             <div className='flex items-center'>
                 <img className='rounded-full mr-2 w-10 h-10' src={logoimg} alt="" />
                 <Link to='/' className="text-xl hidden md:block hover:bg-neutral hover:text-primary hover:rounded hover:p-2">Best Used Phones</Link>

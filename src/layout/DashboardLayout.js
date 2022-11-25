@@ -13,12 +13,12 @@ const DashboardLayout = () => {
 
     const { user } = useContext(AuthContext);
     const [isAdmin] = useAdmin(user?.email)
-    // const [isBuyer] = useBuyer(user?.email)
     const [isSeller] = useSeller(user?.email)
+    // const [isBuyer] = useBuyer(user?.email)
 
-    console.log(isAdmin);
+    // console.log(isAdmin);
     // console.log(isBuyer);
-    console.log(isSeller);
+    // console.log(isSeller);
     return (
         <div>
             <Header></Header>
@@ -31,25 +31,35 @@ const DashboardLayout = () => {
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80  ">
                         {
-                            isAdmin ? <>
-                                <li><Link to="/dashboard/allsellers">All Sellers</Link></li>
-                                <li><Link to="/dashboard/allbuyers">ALL Buyers</Link></li>
-                                <li><Link to="/dashboard/reportedproducts">Reported Products</Link></li>
-                            </>
-                                : (isSeller ?
-                                    <>
-                                        <li><Link to="/dashboard/buyers">My Buyesr</Link></li>
-                                        <li><Link to="/dashboard/addproduct">Add Products</Link></li>
-                                        <li><Link to="/dashboard/myproducts">My Products</Link></li>
-                                    </>
-                                    : <>
+                            isAdmin ?
+                                <>
+                                    <li>
+                                        <Link to="/dashboard/allsellers">All Sellers</Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/dashboard/allbuyers">ALL Buyers</Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/dashboard/reportedproducts">Reported Products</Link>
+                                    </li>
+                                </>
+                                :
+                                (
+                                    isSeller ?
+                                        <>
+                                            <li><Link to="/dashboard/buyers">My Buyesr</Link></li>
+                                            <li><Link to="/dashboard/addproduct">Add Products</Link></li>
+                                            <li><Link to="/dashboard/myproducts">My Products</Link></li>
+                                        </>
+                                        :
+                                        <>
 
-                                        <li><Link to="/dashboard/orders">My Orders</Link></li>
-                                        <li><Link to="/dashboard/wishlist">Wish List</Link></li>
-                                    </>)
+                                            <li><Link to="/dashboard/orders">My Orders</Link></li>
+                                            <li><Link to="/dashboard/wishlist">Wish List</Link></li>
+                                        </>
+                                )
                         }
                     </ul>
-
                 </div>
             </div>
         </div>

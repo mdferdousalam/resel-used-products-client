@@ -10,7 +10,7 @@ import { FaPhoneAlt } from "react-icons/fa";
 
 const Footer = () => {
     return (
-        <div className='bg-primary text-white md:text-xl pt-10 mt-32'>
+        <div className='bg-primary text-white md:text-xl pt-10 mt-20 relative bottom-0'>
             <div className=' grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
                 <div className='p-6 text-center'>
                     <Link>About Us</Link>
