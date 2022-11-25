@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../../context/Authprovider/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import logoimg from '../../../assets/image/android-chrome-192x192.png'
 
 
 const Header = () => {
@@ -19,8 +20,10 @@ const Header = () => {
 
     return (
         <div className=" bg-primary flex justify-between p-10 text-white pt-10 sticky z-50">
-
-            <Link to='/' className="text-xl hidden md:block hover:bg-neutral hover:text-primary hover:rounded hover:p-2">Best Used Phones</Link>
+            <div className='flex items-center'>
+                <img className='rounded-full mr-2 w-10 h-10' src={logoimg} alt="" />
+                <Link to='/' className="text-xl hidden md:block hover:bg-neutral hover:text-primary hover:rounded hover:p-2">Best Used Phones</Link>
+            </div>
             <div className="form-control">
                 <input type="text" placeholder="Search" className="input text-primary input-bordered w-11/12" />
             </div>
@@ -34,11 +37,13 @@ const Header = () => {
                         <ul tabIndex={0} className="z-20 menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                             <li><Link className='hover:bg-accent ' to='/home'>Home</Link></li>
                             <li><Link className=' ' to='/blog'>Blog</Link></li>
-                            <li><Link className=' ' to='/addservice'>Add Product</Link></li>
-                            <li><Link className=' ' to='/myreviews'>My Buyers</Link></li>
-                            <li><Link className=' ' to='/myreviews'>My Orders</Link></li>
-                            <li><Link className=' ' to='/login'>Login</Link></li>
-                            <li><Link className=' ' onClick={handleLogOut} >Log out</Link></li>
+                            <li><Link className=' ' to='/dashboard'>Dashboard</Link></li>
+                            {
+                                user?.uid ?
+                                    <li><Link className=' ' onClick={handleLogOut} >Log out</Link></li>
+                                    :
+                                    <li><Link className=' ' to='/login'>Login</Link></li>
+                            }
                         </ul>
                     </div>
                 </div>
@@ -50,11 +55,9 @@ const Header = () => {
                                 <>
                                     <div className='flex justify-between'>
 
-                                        <Link to='/home' className="text-xl   ">Home</Link>
-                                        <Link to='/blog' className="text-xl  ">Blog</Link>
-                                        <Link to='/addservice' className="text-xl  ">Add Product</Link>
-                                        <Link to='/myreviews' className="text-xl  ">My Product</Link>
-                                        <Link to='/myreviews' className="text-xl  ">My Buyer</Link>
+                                        <Link to='/home' className="text-xl ml-4 hover:bg-neutral hover:text-primary hover:rounded hover:p-2 ">Home</Link>
+                                        <Link to='/blog' className="text-xl ml-4 hover:bg-neutral hover:text-primary hover:rounded hover:p-2 ">Blog</Link>
+                                        <Link to='/dashboard' className="text-xl ml-4 hover:bg-neutral hover:text-primary hover:rounded hover:p-2">Dashboard</Link>
                                     </div>
                                 </>
                                 :

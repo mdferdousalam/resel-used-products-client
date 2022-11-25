@@ -5,8 +5,9 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle } from "react-icons/fa";
 import { GoogleAuthProvider, sendPasswordResetEmail } from 'firebase/auth';
 import { AuthContext } from '../../context/Authprovider/AuthContext';
-
+import * as Loader from "react-loader-spinner";
 import useToken from '../../hooks/useToken';
+import toast from 'react-hot-toast';
 
 const Login = () => {
     UseTitle('Login')
@@ -18,7 +19,7 @@ const Login = () => {
     const googleProvider = new GoogleAuthProvider();
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { providerLogin, userEmail, setUserType, signIn, auth } = useContext(AuthContext)
+    const { providerLogin, userEmail, setUserType, signIn, auth, loading, setLoading } = useContext(AuthContext)
 
     const [loginUserEmail, setLoginUserEmail] = useState('');
     const [token] = useToken(loginUserEmail);
@@ -31,12 +32,14 @@ const Login = () => {
     const handleGoogleLogin = () => {
         providerLogin(googleProvider)
             .then(result => {
+                setLoading(true)
                 // const user = result.user;
                 setLoginUserEmail(result.user.email)
                 // console.log(user);
                 // console.log(user);
                 // setUser(user)
                 setUserType('buyer')
+                setLoading(false)
                 navigate(from, { replace: true })
             })
             .catch((error) => {
@@ -45,9 +48,8 @@ const Login = () => {
     }
 
 
-
-
     const onSubmit = data => {
+        setLoading(true)
         // console.log(data)
         setLoginUserEmail(data.email)
         // console.log(loginUserEmail)
@@ -57,14 +59,20 @@ const Login = () => {
                 const user = result.user;
                 console.log(user.email);
                 // setLoginUserEmail(user.email)
+                setLoading(false)
                 navigate(from, { replace: true })
 
 
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                setLoading(false)
+                toast.error('Failed! please try again')
+                console.log(error)
+            })
     }
 
     const handleForgetPassword = () => {
+        setLoading(true)
         if (!userEmail) {
             alert('Please enter your email')
             return
@@ -72,13 +80,23 @@ const Login = () => {
         sendPasswordResetEmail(auth, userEmail)
             .then(() => {
                 alert('password reset email sent')
+                setLoading(false)
             })
             .catch((error) => {
                 console.log(error);
+                toast.error('Failed! please try again')
+                setLoading(false)
             })
     }
 
-
+    if (loading) {
+        return < Loader.RotatingLines strokeColor="purple"
+            strokeWidth="5"
+            animationDuration="0.75"
+            width="1000"
+            visible={true}
+        />
+    }
 
     return (
         <div>

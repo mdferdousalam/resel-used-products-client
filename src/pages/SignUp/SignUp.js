@@ -7,11 +7,13 @@ import toast from 'react-hot-toast';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { FaGoogle } from "react-icons/fa";
 import useToken from '../../hooks/useToken';
+import * as Loader from "react-loader-spinner";
 
 const SignUp = () => {
     UseTitle('SignUp')
 
-    const { createUser, setUser, setUserType, providerLogin, updateUserProfile } = useContext(AuthContext)
+    const { createUser, setUser, setUserType, providerLogin, updateUserProfile, loading,
+        setLoading } = useContext(AuthContext)
 
     const imageHostKey = process.env.REACT_APP_imgbb_key
 
@@ -30,7 +32,7 @@ const SignUp = () => {
     const [token] = useToken(createdUserEmail)
 
 
-    console.log(createdUserEmail);
+    // console.log(createdUserEmail);
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const googleProvider = new GoogleAuthProvider();
@@ -41,6 +43,7 @@ const SignUp = () => {
 
 
     const onSubmit = data => {
+        setLoading(true)
         const name = data.name
         const email = data.email;
         const password = data.password;
@@ -121,10 +124,21 @@ const SignUp = () => {
                         console.log(data)
                         if (data.result.acknowledged) {
                             toast.success('User saved to database successfully')
+                            setLoading(false)
                             navigate(from, { replace: true })
                         }
                     })
             }).catch(err => console.log(err))
+    }
+
+
+    if (loading) {
+        return < Loader.RotatingLines strokeColor="purple"
+            strokeWidth="5"
+            animationDuration="0.75"
+            width="500"
+            visible={true}
+        />
     }
 
     const handleGoogleLogin = () => {
