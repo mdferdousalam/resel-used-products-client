@@ -45,7 +45,7 @@ const AllBuyers = () => {
 
     return (
         <div className="overflow-x-auto w-full">
-            <table className="table w-full">
+            <table className="table  w-full">
                 <thead>
                     <tr>
                         <th> SL </th>
