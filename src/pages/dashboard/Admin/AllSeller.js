@@ -1,11 +1,22 @@
 import React from 'react';
+import { useQuery } from '@tanstack/react-query';
+
+
+import Sellerinfo from './Sellerinfo';
 
 const AllSeller = () => {
+
+
+
+
+
+
+
     return (
-        <div>
-            <h2>All Sellers Here</h2>
-        </div>
+        <div></div>
     );
+
+
 };
 
 export default AllSeller;
