@@ -93,7 +93,7 @@ const Login = () => {
         return < Loader.RotatingLines strokeColor="purple"
             strokeWidth="5"
             animationDuration="0.75"
-            width="1000"
+            width="500"
             visible={true}
         />
     }

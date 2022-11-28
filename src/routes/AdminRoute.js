@@ -14,7 +14,7 @@ const AdminRoute = ({ children }) => {
         return < Loader.RotatingLines strokeColor="purple"
             strokeWidth="5"
             animationDuration="0.75"
-            width="96"
+            width="200"
             visible={true}
         />
     }
