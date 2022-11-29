@@ -51,10 +51,13 @@ const SignUp = () => {
         const accountType = data.accountType
 
         // image host server 
+        console.log(image);
         const formData = new FormData()
         formData.append('image', image)
-        const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`
-        fetch(url, {
+
+        // const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`
+        const URL = `https://api.imgbb.com/1/upload?key=6517268237b9e78ae4c89bca95e0e462`
+        fetch(URL, {
             method: 'POST',
             body: formData
         })

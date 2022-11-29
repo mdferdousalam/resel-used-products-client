@@ -1,11 +1,191 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import UseTitle from '../../../hooks/UseTitle';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
+import * as Loader from "react-loader-spinner";
+import toast from 'react-hot-toast';
+import { AuthContext } from '../../../context/Authprovider/AuthContext';
 
 
 const AddProduct = () => {
+    UseTitle('Add Products')
     const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const { loading, setLoading, user } = useContext(AuthContext)
+    // const [productimageUploadURL, setProductimageUploadURL] = useState('')
+
+    const navigate = useNavigate()
+    // const location = useLocation()
+    // const from = location?.state?.form?.pathname || "/";
+
+    // const imageHostKey = process.env.REACT_APP_imgbb2_key
+
+
+    if (loading) {
+        return < Loader.RotatingLines strokeColor="purple"
+            strokeWidth="5"
+            animationDuration="0.75"
+            width="400"
+            visible={true}
+        />
+    }
+
     const onSubmit = data => {
-        console.log(data)
+        // console.log(data)
+        setLoading(true)
+        const sellerEmail = user.email;
+        const productName = data.productName;
+        const productBrand = data.productBrand;
+        const productTitle = data.productTitle;
+        // const productImage = data.productImage[0];
+        const productImage = data.productImage;
+        // console.log(productImage);
+        const productModel = data.productModel;
+        const location = data.location;
+        const condition = data.productCondition;
+        const physicalCondition = data.productPhysicalCondition;
+        const includes = data.includes;
+        const invoice = data.invoice;
+        const sellerType = data.sellerType;
+        const primaryCamera = data.primaryCamera;
+        const seconderyCamera = data.secondaryCamera;
+        const screenSize = data.screenSize;
+        const operatingSystem = data.operatingSystem;
+        const simCount = data.simCount;
+        const simType = data.simType;
+        const ram = data.RAM;
+        const internalMemory = data.internalMemory;
+        const displayResulation = data.displayResulation;
+        const size = data.size;
+        const video = data.video;
+        const batteryType = data.batteryType;
+        const features = data.features;
+        const category = data.category;
+
+
+        const productInfo = {
+            productTitle,
+            productName,
+            productBrand,
+            productImage,
+            productModel,
+            location,
+            condition,
+            physicalCondition,
+            includes,
+            invoice,
+            sellerType,
+            primaryCamera,
+            seconderyCamera,
+            screenSize,
+            operatingSystem,
+            simCount,
+            simType,
+            ram,
+            internalMemory,
+            displayResulation,
+            size,
+            video,
+            batteryType,
+            features,
+            status: 'available',
+            advertised: false,
+            category,
+            sellerEmail
+        }
+
+        fetch('https://b612-used-products-resale-server-side.vercel.app/products', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('accessToken12')}`
+            },
+            body: JSON.stringify(productInfo)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.acknowledged) {
+                    toast.success('Product Saved Successfully.')
+                    setLoading(false)
+                    // navigate(from, { replace: true })
+                    navigate('/dashboard/myproducts')
+                }
+            }).catch(err => {
+                console.log(err)
+                toast.error("Product not saved please check and add again")
+                setLoading(false)
+            })
+
+        // const formData = new FormData()
+        // formData.append('productImage', productImage)
+        // const url = `https://api.imgbb.com/1/upload?key=${imageHostKey}`
+        // console.log(url);
+        // fetch(url, {
+        //     method: 'POST',
+        //     body: formData
+        // })
+        //     .then(res => res.json())
+        //     .then(imagedata => {
+        //         console.log(imagedata);
+        //         console.log(imagedata);
+        //         const productImageURL = imagedata.data.url;
+        //         const productInfo = {
+        //             productTitle,
+        //             productName,
+        //             productBrand,
+        //             productImageURL,
+        //             productModel,
+        //             location,
+        //             condition,
+        //             physicalCondition,
+        //             includes,
+        //             invoice,
+        //             sellerType,
+        //             primaryCamera,
+        //             seconderyCamera,
+        //             screenSize,
+        //             operatingSystem,
+        //             simCount,
+        //             simType,
+        //             ram,
+        //             internalMemory,
+        //             displayResulation,
+        //             size,
+        //             video,
+        //             batteryType,
+        //             features,
+        //             status: 'available',
+        //             advertised: false,
+        //             category
+        //         }
+        //         fetch('https://b612-used-products-resale-server-side.vercel.app/products', {
+        //             method: 'POST',
+        //             headers: {
+        //                 'content-type': 'application/json',
+        //                 authorization: `bearer ${localStorage.getItem('accessToken12')}`
+        //             },
+        //             body: JSON.stringify(productInfo)
+        //         })
+        //             .then(res => res.json())
+        //             .then(data => {
+        //                 console.log(data)
+        //                 if (data.result.acknowledged) {
+        //                     toast.success('Product Saved Successfully.')
+        //                     setLoading(false)
+        //                     navigate(from, { replace: true })
+        //                 }
+        //             }).catch(err => {
+        //                 console.log(err)
+        //                 toast.error("Product not saved please check and add again")
+        //                 setLoading(false)
+        //             })
+        //     }).catch(err => {
+        //         console.log(err)
+        //         setLoading(false)
+        //     })
+
+
     }
 
     return (
@@ -42,8 +222,9 @@ const AddProduct = () => {
                 <label className='text-start'>4. Image of the Product</label>
                 <input
                     placeholder='Product Image'
-                    type='file'
-                    title='Choose Product image'
+                    // type='file'
+                    type='text'
+                    // title='Choose Product image'
                     className='border-2 mb-6 p-4 rounded border-primary'
                     {...register("productImage", { required: true })}
                 />
@@ -102,7 +283,7 @@ const AddProduct = () => {
                     placeholder='Also Includes'
                     type='text'
                     className='border-2 mb-6 p-4 rounded border-primary'
-                    {...register("includs", { required: true })}
+                    {...register("includes", { required: true })}
                 />
                 {errors.includs && <span>Also Includes is required</span>}
 
@@ -242,6 +423,21 @@ const AddProduct = () => {
                     {...register("features", { required: true })}
                 />
                 {errors.features && <span>Features is required</span>}
+
+                <label className='text-start'>26. Category</label>
+                <select
+                    defaultChecked='samsung'
+                    title='Choose your product category'
+                    className='border-2 p-4 rounded border-primary'
+                    {...register("category")}
+                >
+                    <option value="samsung">Samsung</option>
+                    <option value="apple">Apple</option>
+                    <option value="oppo">Oppo</option>
+
+                </select>
+
+
                 <input
                     className='mt-10 font-medium border-2 border-primary  w-1/2 rounded mx-auto bg-neutral p-2 hover:bg-primary hover:text-white'
                     type="submit"
