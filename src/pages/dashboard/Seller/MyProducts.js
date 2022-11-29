@@ -10,7 +10,11 @@ const MyProducts = () => {
     const { user } = useContext(AuthContext)
     const url = `https://b612-used-products-resale-server-side.vercel.app/products?email=${user.email}`
     useEffect(() => {
-        axios.get(url)
+        axios.get(url, {
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken12')}`
+            }
+        })
             .then(response => {
                 console.log(response);
                 const productList = response.data
