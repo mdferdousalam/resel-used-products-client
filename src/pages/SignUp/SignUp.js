@@ -83,12 +83,12 @@ const SignUp = () => {
                         setCreatedUserEmail(email)
                         // setNewProfileEmail(email)
                         // setCreatedUserEmail(result.user.email)
-                        const user = result.user
+                        // const user = result.user
                         // user seting 
                         // user account type setup 
                         // setUserType(accountType)
                         // toast.success("user created successfully")
-                        console.log(email);
+                        // console.log(email);
                         // user profile updating 
                         // const newUser = { ...userInfo }
                         // setUser(newUser, user)
@@ -107,7 +107,7 @@ const SignUp = () => {
                         .then(() => {
                             // console.log(photoURL)
                             // setCreatedUserEmail(email)
-                            console.log(email)
+                            // console.log(email)
                             toast.success("user profile updated successfully")
 
                         })

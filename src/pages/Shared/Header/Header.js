@@ -19,14 +19,14 @@ const Header = () => {
 
 
     return (
-        <div className="bg-primary sticky top-0 flex justify-between p-10 text-white pt-10 sticky z-50">
+        <div className="bg-primary sticky top-0 flex justify-between p-10 text-white pt-10  z-50">
             <div className='flex items-center'>
                 <img className='rounded-full mr-2 w-10 h-10' src={logoimg} alt="" />
                 <Link to='/' className="text-xl hidden md:block hover:bg-neutral hover:text-primary hover:rounded hover:p-2">Best Used Phones</Link>
             </div>
-            <div className="form-control">
+            {/* <div className="form-control">
                 <input type="text" placeholder="Search" className="input text-primary input-bordered w-11/12" />
-            </div>
+            </div> */}
             <div className='flex'>
 
                 <div className="">
@@ -77,8 +77,6 @@ const Header = () => {
                             <Link onClick={handleLogOut} className="text-xl hover:bg-neutral hover:text-primary hover:rounded hover:p-2 ml-4">Logout</Link>
                             :
                             <Link className='text-xl hover:bg-neutral hover:text-primary hover:rounded hover:p-2' to='/login'>Login</Link>
-
-
                     }
                 </div>
             </div>

@@ -12,7 +12,10 @@ import MyBuyers from "../pages/dashboard/Seller/MyBuyers";
 import MyProducts from "../pages/dashboard/Seller/MyProducts";
 import Welcome from "../pages/dashboard/Welcome";
 import ErrorElement from "../pages/ErrorPage/ErrorElement";
+import AppleCategory from "../pages/Home/Home/AppleCategory";
 import Home from "../pages/Home/Home/Home";
+import OppoCategory from "../pages/Home/Home/OppoCategory";
+import SamsungCategory from "../pages/Home/Home/SamsungCategory";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import AdminRoute from "./AdminRoute";
@@ -45,6 +48,18 @@ const router = createBrowserRouter([
             {
                 path: '/signup',
                 element: <SignUp></SignUp>
+            },
+            {
+                path: '/apple',
+                element: <PrivateRoute><AppleCategory></AppleCategory></PrivateRoute>
+            },
+            {
+                path: '/samsung',
+                element: <PrivateRoute><SamsungCategory></SamsungCategory></PrivateRoute>
+            },
+            {
+                path: '/oppo',
+                element: <PrivateRoute><OppoCategory></OppoCategory></PrivateRoute>
             }
         ]
     },
