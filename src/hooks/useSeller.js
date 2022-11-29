@@ -5,7 +5,12 @@ const useSeller = email => {
     const [isSellerLoading, setIsSellerLoading] = useState(true);
     useEffect(() => {
         if (email) {
-            fetch(`https://b612-used-products-resale-server-side.vercel.app/users/seller?email=${email}`)
+            fetch(`https://b612-used-products-resale-server-side.vercel.app/users/seller?email=${email}`, {
+                method: 'GET',
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken12')}`
+                },
+            })
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);

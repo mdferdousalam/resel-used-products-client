@@ -5,7 +5,12 @@ const useAdmin = email => {
     const [isAdminLoading, setIsAdminLoading] = useState(true);
     useEffect(() => {
         if (email) {
-            fetch(`https://b612-used-products-resale-server-side.vercel.app/users/admin?email=${email}`)
+            fetch(`https://b612-used-products-resale-server-side.vercel.app/users/admin?email=${email}`, {
+                method: 'GET',
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken12')}`
+                },
+            })
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);

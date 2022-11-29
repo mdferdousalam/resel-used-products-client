@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import BuyersInfo from './BuyersInfo';
+// import BuyersInfo from './BuyersInfo';
 import toast from 'react-hot-toast';
 
 import Sellerinfo from './Sellerinfo';
@@ -49,7 +49,6 @@ const AllSeller = () => {
                     }
                 </tbody>
             </table>
-
         </div>
     );
 

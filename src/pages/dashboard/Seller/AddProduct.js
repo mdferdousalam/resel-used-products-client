@@ -61,6 +61,7 @@ const AddProduct = () => {
         const batteryType = data.batteryType;
         const features = data.features;
         const category = data.category;
+        const price = data.price;
 
 
         const productInfo = {
@@ -91,7 +92,8 @@ const AddProduct = () => {
             status: 'available',
             advertised: false,
             category,
-            sellerEmail
+            sellerEmail,
+            price
         }
 
         fetch('https://b612-used-products-resale-server-side.vercel.app/products', {
@@ -436,6 +438,15 @@ const AddProduct = () => {
                     <option value="oppo">Oppo</option>
 
                 </select>
+
+                <label className='text-start'>27. Price</label>
+                <input
+                    placeholder='Price'
+                    type='text'
+                    className='border-2 mb-6 p-4 rounded border-primary'
+                    {...register("price", { required: true })}
+                />
+                {errors.price && <span>Price is required</span>}
 
 
                 <input
