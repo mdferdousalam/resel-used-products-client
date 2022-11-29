@@ -22,7 +22,7 @@ const Header = () => {
         <div className="bg-primary sticky top-0 flex justify-between p-10 text-white pt-10  z-50">
             <div className='flex items-center'>
                 <img className='rounded-full mr-2 w-10 h-10' src={logoimg} alt="" />
-                <Link to='/' className="text-xl hidden md:block hover:bg-neutral hover:text-primary hover:rounded hover:p-2">Best Used Phones</Link>
+                <Link to='/' className="text-xl hidden md:block hover:bg-neutral hover:text-primary hover:rounded p-2">Best Used Phones</Link>
             </div>
             {/* <div className="form-control">
                 <input type="text" placeholder="Search" className="input text-primary input-bordered w-11/12" />
@@ -55,30 +55,26 @@ const Header = () => {
                                 <>
                                     <div className='flex justify-between'>
 
-                                        <Link to='/home' className="text-xl ml-4 hover:bg-neutral hover:text-primary hover:rounded hover:p-2 ">Home</Link>
-                                        <Link to='/blog' className="text-xl ml-4 hover:bg-neutral hover:text-primary hover:rounded hover:p-2 ">Blog</Link>
-                                        <Link to='/dashboard' className="text-xl ml-4 hover:bg-neutral hover:text-primary hover:rounded hover:p-2">Dashboard</Link>
+                                        <Link to='/home' className="text-xl ml-4 hover:bg-neutral hover:text-primary hover:rounded p-2 ">Home</Link>
+                                        <Link to='/blog' className="text-xl ml-4 hover:bg-neutral hover:text-primary hover:rounded p-2 ">Blog</Link>
+                                        <Link to='/dashboard' className="text-xl ml-4 hover:bg-neutral hover:text-primary hover:rounded p-2">Dashboard</Link>
+                                        <Link onClick={handleLogOut} className="text-xl hover:bg-neutral hover:text-primary hover:rounded p-2 ml-4">Logout</Link>
                                     </div>
                                 </>
                                 :
                                 <>
-                                    <Link to='/home' className=" hover:bg-neutral hover:text-primary hover:rounded hover:p-2 text-xl mr-10 ">Home</Link>
-                                    <Link to='/blog' className=" hover:bg-neutral hover:text-primary hover:rounded hover:p-2  text-xl mr-10 ">Blog</Link>
+                                    <Link to='/home' className=" hover:bg-neutral hover:text-primary hover:rounded p-2 text-xl mr-10 ">Home</Link>
+                                    <Link to='/blog' className=" hover:bg-neutral hover:text-primary hover:rounded p-2  text-xl mr-10 ">Blog</Link>
+                                    <Link className='text-xl hover:bg-neutral hover:text-primary hover:rounded p-2' to='/login'>Login</Link>
 
                                 </>
                         }
 
 
+
                     </div>
                 </div>
-                <div className=" hidden md:block">
-                    {
-                        user?.uid ?
-                            <Link onClick={handleLogOut} className="text-xl hover:bg-neutral hover:text-primary hover:rounded hover:p-2 ml-4">Logout</Link>
-                            :
-                            <Link className='text-xl hover:bg-neutral hover:text-primary hover:rounded hover:p-2' to='/login'>Login</Link>
-                    }
-                </div>
+
             </div>
         </div >
     );

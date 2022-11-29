@@ -448,6 +448,15 @@ const AddProduct = () => {
                 />
                 {errors.price && <span>Price is required</span>}
 
+                <label className='text-start'>28. Description</label>
+                <textarea
+                    placeholder='Description'
+                    type='text'
+                    className='border-2 mb-6 p-4 rounded border-primary'
+                    {...register("description", { required: true })}
+                />
+                {errors.description && <span>Description is required</span>}
+
 
                 <input
                     className='mt-10 font-medium border-2 border-primary  w-1/2 rounded mx-auto bg-neutral p-2 hover:bg-primary hover:text-white'

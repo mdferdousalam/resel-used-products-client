@@ -75,7 +75,8 @@ const SignUp = () => {
                     email: email,
                     password: password,
                     photoURL: photoURL,
-                    accountType: accountType
+                    accountType: accountType,
+                    status: 'not verified'
                 }
                 //creating user
                 createUser(email, password)
