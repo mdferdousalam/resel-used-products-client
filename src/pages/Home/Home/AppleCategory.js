@@ -30,43 +30,45 @@ const AppleCategory = () => {
         <div className='mt-10 grid gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
 
             {
-                apple?.map(phone => phone.status === 'available' && <div
-                    key={phone._id}
-                    className="card text-primary w-96 bg-base-100 shadow-xl">
-                    <figure><img src={phone.productImage} alt="apple" /></figure>
-                    <div className="card-body">
-                        <h2 className="card-title">
-                            {phone.productTitle}
-                            <div className="badge badge-neutral">Hot</div>
-                        </h2>
-                        <p>{phone.description}</p>
-                        <p>Location: {phone.location}</p>
-                        <p>Condition: {phone.condition}</p>
-                        <p>Includes: {phone.includes}</p>
-                        <p>Primary Camera: {phone.primaryCamera}</p>
-                        <p>Secondary Camera: {phone.seconderyCamera}</p>
-                        <p>Screen Size: {phone.screenSize}</p>
-                        <p>SIM Count: {phone.simCount}</p>
-                        <p>SIM Type: {phone.simType}</p>
-                        <p>RAM: {phone.ram}</p>
-                        <p>Internal Memory: {phone.internalMemory}</p>
-                        <p>Battery: {phone.batteryType}</p>
-                        <p>Price: $ {phone.price}</p>
+                apple?.map(phone => phone.status === 'available' &&
+                    <div
+                        key={phone._id}
+                        className="card text-primary w-96 bg-base-100 shadow-xl">
+                        <figure><img src={phone.productImage} alt="apple" /></figure>
+                        <div className="card-body">
+                            <h2 className="card-title">
+                                {phone.productTitle}
+                                <div className="badge badge-neutral">Hot</div>
+                            </h2>
+                            <p>{phone.description}</p>
+                            <p>Location: {phone.location}</p>
+                            <p>Condition: {phone.condition}</p>
+                            <p>Includes: {phone.includes}</p>
+                            <p>Primary Camera: {phone.primaryCamera}</p>
+                            <p>Secondary Camera: {phone.seconderyCamera}</p>
+                            <p>Screen Size: {phone.screenSize}</p>
+                            <p>SIM Count: {phone.simCount}</p>
+                            <p>SIM Type: {phone.simType}</p>
+                            <p>RAM: {phone.ram}</p>
+                            <p>Internal Memory: {phone.internalMemory}</p>
+                            <p>Battery: {phone.batteryType}</p>
+                            <p>Price: $ {phone.price}</p>
 
-                        <div className="card-actions items-center justify-center">
-                            <button className="btn btn-primary btn-sm">Wish List</button>
-                            <button className="btn btn-primary btn-sm">Report</button>
-                            <label
-                                htmlFor="order-modal"
-                                className="btn btn-primary btn-sm">Buy Now
-                            </label>
+                            <div className="card-actions items-center justify-center">
+                                <button className="btn btn-primary btn-sm">Wish List</button>
+                                <button className="btn btn-primary btn-sm">Report</button>
+                                <label
+                                    htmlFor="order-modal"
+                                    className="btn btn-primary btn-sm">Buy Now
+                                </label>
+                            </div>
                         </div>
+                        <OrderModal
+                            user={user}
+                            phone={phone}
+                        ></OrderModal>
                     </div>
-                    <OrderModal
-                        user={user}
-                        phone={phone}
-                    ></OrderModal>
-                </div>)
+                )
             }
 
         </div >

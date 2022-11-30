@@ -85,7 +85,7 @@ const Reportedproducts = () => {
                             <td>{product?.message} </td>
                             <td>{product?.reporterEmail} </td>
                             <th><button
-
+                                onClick={() => handleDeleteProduct(product._id)}
                                 className="btn btn-primary btn-xs">Delete</button></th>
                         </tr>
                         )

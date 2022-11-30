@@ -1,11 +1,11 @@
  # Used products and review market.
 
 Main Feature of this project is
-> - used mongodb 
-> - used JWT
-> - Used Firebase Authentication
-> - This project is solo service provider project
-> - Protected routing also used in this project
+> - used Admin Role and Dashboard 
+> - used JWT and middlewire for rolebased user verify
+> - Used Firebase Authentication and hosting of this projct
+> - This project is like reselling market
+> - Advertising options available for sellers and can delete products.
 
 
  

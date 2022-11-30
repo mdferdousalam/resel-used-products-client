@@ -81,7 +81,7 @@ const MyProducts = () => {
 
                 if (data.acknowledged) {
                     toast.success('Product Advertised');
-                    navigate('/dashboard/myproducts')
+                    navigate('/dashboard')
                 }
                 else {
                     toast.error(data.message);

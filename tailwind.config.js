@@ -7,11 +7,11 @@ module.exports = {
     themes: [
       {
         assignment12: {
-          primary: '#61481C',
+          primary: '#01005E',
           secondary: "#A47E3B",
-          accent: "#BF9742",
-          neutral: "#E6B325",
-          base: "#F3EFE0",
+          accent: "#28518A",
+          neutral: "#22267B",
+          base: "#EDDBC0",
           info: "#3ABFF8",
           success: "#36D399",
           warning: "#FBBD23",
