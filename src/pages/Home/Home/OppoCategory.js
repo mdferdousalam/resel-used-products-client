@@ -2,12 +2,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../context/Authprovider/AuthContext';
 import UseTitle from '../../../hooks/UseTitle';
 import axios from 'axios';
+import OrderModal from './OrderModal';
 
 
 const OppoCategory = () => {
     UseTitle('Oppo Category')
     const { loading, setLoading, user } = useContext(AuthContext)
     const [oppo, setOppo] = useState(null)
+    // const [phone, setPhone] = useState()
 
     const url = `https://b612-used-products-resale-server-side.vercel.app/products/oppo`
     useEffect(() => {
@@ -28,7 +30,7 @@ const OppoCategory = () => {
         <div className='mt-10 grid gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
 
             {
-                oppo?.map(phone => <div className="card text-primary w-96 bg-base-100 shadow-xl">
+                oppo?.map(phone => phone.status === 'available' && <div className="card text-primary w-96 bg-base-100 shadow-xl">
                     <figure><img src={phone.productImage} alt="apple" /></figure>
                     <div className="card-body">
                         <h2 className="card-title">
@@ -50,13 +52,25 @@ const OppoCategory = () => {
                         <p>Price: $ {phone.price}</p>
 
                         <div className="card-actions items-center justify-center">
+
                             <button className="btn btn-primary btn-sm">Wish List</button>
                             <button className="btn btn-primary btn-sm">Report</button>
-                            <button className="btn btn-primary btn-sm">Buy Now</button>
+                            <label
+                                htmlFor="order-modal"
+                                className="btn btn-primary btn-sm">Buy Now
+                            </label>
                         </div>
                     </div>
-                </div>)
+                    <OrderModal
+                        user={user}
+                        phone={phone}
+                    ></OrderModal>
+                </div>
+
+
+                )
             }
+
         </div >
     );
 };
