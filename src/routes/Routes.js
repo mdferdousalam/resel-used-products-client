@@ -7,6 +7,7 @@ import AllSeller from "../pages/dashboard/Admin/AllSeller";
 import Reportedproducts from "../pages/dashboard/Admin/Reportedproducts";
 import MyOrders from "../pages/dashboard/Buyer/MyOrders";
 import Wishlist from "../pages/dashboard/Buyer/Wishlist";
+import Payment from "../pages/dashboard/Payment/Payment";
 import AddProduct from "../pages/dashboard/Seller/AddProduct";
 import MyBuyers from "../pages/dashboard/Seller/MyBuyers";
 import MyProducts from "../pages/dashboard/Seller/MyProducts";
@@ -104,6 +105,11 @@ const router = createBrowserRouter([
                 path: '/dashboard/myproducts',
                 element: <MyProducts></MyProducts>
             },
+            {
+                path: '/dashboard/payment/:id',
+                element: <Payment></Payment>,
+                loader: ({ params }) => fetch(`https://b612-used-products-resale-server-side.vercel.app/products/${params.id}`)
+            }
 
 
 

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import UseTitle from '../../../hooks/UseTitle';
 import axios from 'axios';
 import { AuthContext } from '../../../context/Authprovider/AuthContext';
+import { Link } from 'react-router-dom';
 
 
 const MyOrders = () => {
@@ -56,7 +57,16 @@ const MyOrders = () => {
                             <td>{product?.productBrand}</td>
                             <td>$ {product?.price}</td>
                             <td>{product?.status} </td>
-                            <th><button className="btn btn-primary btn-xs">Pay</button></th>
+                            <th>
+                                {
+                                    product?.price && product.status === 'booked' && <Link to={`/dashboard/payment/${product._id}`}>
+
+                                        <button className="btn btn-primary btn-xs">Pay</button></Link>
+                                }
+                                {
+                                    product?.price && product.status === 'paid' && <span className='text-primary'>Paid</span>
+                                }
+                            </th>
                         </tr>
                         )
                     }
