@@ -1,6 +1,30 @@
 import React from 'react';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const Sellerinfo = ({ seller, index }) => {
+
+    const navigate = useNavigate()
+
+    const handleDeleteSeller = id => {
+        console.log(id)
+        const url = `https://b612-used-products-resale-server-side.vercel.app/users?id=${id}`
+        fetch(url, {
+            method: "delete",
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken12')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.deletedCount > 0) {
+                    toast.success('deleted successfully')
+                    navigate('/dashboard')
+                }
+            })
+    }
+
     return (
         <tr className='text-primary'>
             <th>
@@ -24,7 +48,9 @@ const Sellerinfo = ({ seller, index }) => {
             </td>
 
             <th>
-                <button className="btn btn-primary btn-xs">Delete</button>
+                <button
+                    onClick={() => handleDeleteSeller(seller._id)}
+                    className="btn btn-primary btn-xs">Delete</button>
             </th>
         </tr>
     );

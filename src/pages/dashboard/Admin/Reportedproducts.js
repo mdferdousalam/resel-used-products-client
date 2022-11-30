@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import UseTitle from '../../../hooks/UseTitle';
 import axios from 'axios';
 import { AuthContext } from '../../../context/Authprovider/AuthContext';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 
 const Reportedproducts = () => {
@@ -9,6 +11,9 @@ const Reportedproducts = () => {
 
     const [reportedProducts, setReportedProducts] = useState(null)
     const { user } = useContext(AuthContext)
+    const navigate = useNavigate()
+
+
     const url = `https://b612-used-products-resale-server-side.vercel.app/reportedtedproducts?email=${user.email}`
     useEffect(() => {
         axios.get(url, {
@@ -24,7 +29,24 @@ const Reportedproducts = () => {
             })
     }, [])
 
-
+    const handleDeleteProduct = id => {
+        console.log(id)
+        const url = `https://b612-used-products-resale-server-side.vercel.app/deleteproducts?id=${id}`
+        fetch(url, {
+            method: "delete",
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken12')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.deletedCount > 0) {
+                    toast.success('deleted successfully')
+                    navigate('/dashboard')
+                }
+            })
+    }
 
     return (
         <div className="overflow-x-auto w-full">
@@ -62,7 +84,9 @@ const Reportedproducts = () => {
                             <td>{product?.status} </td>
                             <td>{product?.message} </td>
                             <td>{product?.reporterEmail} </td>
-                            <th><button className="btn btn-primary btn-xs">Delete</button></th>
+                            <th><button
+
+                                className="btn btn-primary btn-xs">Delete</button></th>
                         </tr>
                         )
                     }
