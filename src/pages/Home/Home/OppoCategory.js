@@ -30,7 +30,9 @@ const OppoCategory = () => {
         <div className='mt-10 grid gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
 
             {
-                oppo?.map(phone => phone.status === 'available' && <div className="card text-primary w-96 bg-base-100 shadow-xl">
+                oppo?.map(phone => phone.status === 'available' && <div
+                    key={phone._id}
+                    className="card text-primary w-96 bg-base-100 shadow-xl">
                     <figure><img src={phone.productImage} alt="apple" /></figure>
                     <div className="card-body">
                         <h2 className="card-title">
