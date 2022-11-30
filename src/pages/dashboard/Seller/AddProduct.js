@@ -91,6 +91,8 @@ const AddProduct = () => {
             features,
             status: 'available',
             advertised: false,
+            wishList: false,
+            reported: false,
             category,
             sellerEmail,
             price

@@ -1,12 +1,12 @@
 import React from 'react';
 import toast from 'react-hot-toast';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const OrderModal = ({ user, phone }) => {
 
     const navigate = useNavigate()
-    const location = useLocation()
-    const from = location?.state?.form?.pathname || "/";
+    // const location = useLocation()
+    // const from = location?.state?.form?.pathname || "/";
 
     const handleOrder = (event) => {
         event.preventDefault()
